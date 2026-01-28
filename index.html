@@ -21,40 +21,22 @@ body {
   justify-content: center;
 }
 
-/* FLOATING HEARTS */
+/* FLOATING HEARTS BACKGROUND */
 .hearts span {
   position: absolute;
   font-size: 2rem;
   animation: floatUp linear infinite;
-  opacity: 0.7;
+  opacity: 0.6;
+  pointer-events: none;
 }
 
 @keyframes floatUp {
-  from {
-    transform: translateY(110vh) scale(0.6) rotate(0deg);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(-10vh) scale(1.2) rotate(360deg);
-    opacity: 1;
-  }
-}
-
-/* FLOATING CATS */
-.cats span {
-  position: absolute;
-  font-size: 2.2rem;
-  animation: floatSide 4s ease-in-out infinite;
-}
-
-@keyframes floatSide {
-  0%,100% { transform: translateX(-15px); }
-  50% { transform: translateX(15px); }
+  from { transform: translateY(110vh) scale(0.6); opacity: 0; }
+  to { transform: translateY(-10vh) scale(1.2); opacity: 1; }
 }
 
 /* CARD */
 .card {
-  position: relative;
   background: white;
   padding: 40px 30px;
   border-radius: 30px;
@@ -63,13 +45,15 @@ body {
   width: 90%;
   text-align: center;
   z-index: 10;
-  animation: pop 0.8s ease;
+  animation: pop 0.7s ease;
 }
 
 @keyframes pop {
   from { transform: scale(0.85); opacity: 0; }
   to { transform: scale(1); opacity: 1; }
 }
+
+.hidden { display: none; }
 
 h1 {
   font-size: 1.4rem;
@@ -104,51 +88,52 @@ h1 {
 }
 
 /* BUTTONS */
-.buttons {
-  margin-top: 30px;
-  display: flex;
-  gap: 15px;
-  justify-content: center;
-}
-
 button {
+  margin-top: 20px;
   padding: 12px 28px;
   border: none;
   border-radius: 30px;
   font-size: 1rem;
   cursor: pointer;
-  transition: 0.3s ease;
-}
-
-.yes {
   background: linear-gradient(135deg, #ff5fa2, #ff85b8);
   color: white;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
-.yes:hover {
-  transform: scale(1.1);
+button:hover {
+  transform: scale(1.08);
+  box-shadow: 0 12px 25px rgba(255,95,162,0.4);
 }
 
-.no {
-  background: #eee;
-  color: #555;
+button:active { transform: scale(0.95); }
+
+input {
+  width: 100%;
+  padding: 12px;
+  border-radius: 20px;
+  border: 1px solid #ddd;
+  margin-top: 15px;
+  font-family: 'Poppins', sans-serif;
+  text-align: center;
 }
 
-.hidden { display: none; }
-
-.cat {
-  font-size: 3rem;
-  margin-bottom: 10px;
-}
-
+/* CONTENT */
 .message {
   font-size: 1.1rem;
   color: #444;
   line-height: 1.6;
+  margin-top: 15px;
+  opacity: 0;
+  animation: fadeIn 0.6s forwards;
+}
+
+@keyframes fadeIn {
+  to { opacity: 1; }
 }
 
 .heart-big {
   font-size: 3rem;
+  margin: 15px 0;
   animation: pulse 1.2s infinite;
 }
 
@@ -159,21 +144,12 @@ button {
 }
 
 /* SOCIALS */
-.socials {
-  margin-top: 25px;
-}
-
-.socials p {
-  font-size: 0.95rem;
-  color: #666;
-  margin-bottom: 12px;
-}
-
 .social-links {
   display: flex;
   justify-content: center;
   gap: 12px;
   flex-wrap: wrap;
+  margin-top: 20px;
 }
 
 .social-links a {
@@ -183,107 +159,114 @@ button {
   background: linear-gradient(135deg, #ff5fa2, #ff85b8);
   color: white;
   font-weight: 500;
-  transition: 0.3s ease;
-}
-
-.social-links a:hover {
-  transform: scale(1.08);
-  box-shadow: 0 10px 20px rgba(255,95,162,0.4);
 }
 </style>
 </head>
 
 <body>
 
-<!-- BACKGROUND -->
-<div class="hearts">
-  <span style="left:10%; animation-duration:8s;">❤️</span>
-  <span style="left:30%; animation-duration:10s;">💖</span>
-  <span style="left:50%; animation-duration:7s;">💘</span>
-  <span style="left:70%; animation-duration:9s;">💗</span>
-  <span style="left:90%; animation-duration:11s;">❤️</span>
-</div>
+<!-- FLOATING HEARTS -->
+<div class="hearts" id="hearts"></div>
 
-<div class="cats">
-  <span style="top:20%; left:5%;">🐱</span>
-  <span style="top:60%; right:5%;">🐈</span>
-  <span style="bottom:10%; left:40%;">😺</span>
+<!-- PASSWORD SCREEN -->
+<div class="card" id="lock">
+  <h1>🔒 Only <span class="salma">Salma</span></h1>
+  <p style="font-size:0.95rem;color:#666;">
+    This little world is just for you 💗
+  </p>
+  <input type="password" id="password" placeholder="Enter the secret">
+  <button onclick="unlock()">Enter ✨</button>
+  <p id="lockMsg" style="font-size:0.85rem;color:#e63973;"></p>
 </div>
 
 <!-- HOME -->
-<div class="card" id="home">
+<div class="card hidden" id="home">
   <h1>
     Do you wanna know what I think about you,
     <span class="salma">Salma</span>?
   </h1>
-
-  <div class="buttons">
-    <button class="yes" onclick="showYes()">Yes 💕</button>
-    <button class="no" onclick="showNo()">No 🙈</button>
-  </div>
+  <button onclick="showYes()">Yes 💕</button>
 </div>
 
 <!-- YES PAGE -->
 <div class="card hidden" id="yesPage">
-  <div class="cat">🐱💞</div>
   <div class="message" id="compliment"></div>
-
   <div class="heart-big">❤️</div>
+  <button onclick="newCompliment()">Another one 🐾</button>
 
-  <button class="yes" onclick="newCompliment()">Another one 🐾</button>
-
-  <div class="socials">
-    <p>Wanna see her world? 💫</p>
-    <div class="social-links">
-      <a href="https://instagram.com/okm.salma" target="_blank">📸 Instagram</a>
-      <a href="https://www.snapchat.com/add/okm-salma" target="_blank">👻 Snapchat</a>
-      <a href="https://www.tiktok.com/@hppt__sokm" target="_blank">🎵 TikTok</a>
-    </div>
+  <div class="social-links">
+    <a href="https://instagram.com/okm.salma" target="_blank">📸 Instagram</a>
+    <a href="https://www.snapchat.com/add/okm-salma" target="_blank">👻 Snapchat</a>
+    <a href="https://www.tiktok.com/@hppt__sokm" target="_blank">🎵 TikTok</a>
   </div>
 </div>
 
-<!-- NO PAGE -->
-<div class="card hidden" id="noPage">
-  <div class="cat">🥺🐱</div>
-  <div class="message">
-    Even if you said no… 😌<br>
-    my heart still chose you.
-  </div>
-  <br>
-  <button class="yes" onclick="showYes()">Okay… tell me 💖</button>
-</div>
+<!-- BACKGROUND MUSIC -->
+<audio id="music" loop>
+  <!-- Replace with any soft/cute MP3 you like -->
+  <source src="https://cdn.pixabay.com/audio/2023/03/02/audio_7f1d2d1a1b.mp3" type="audio/mpeg">
+</audio>
 
 <script>
+const lock = document.getElementById("lock");
 const home = document.getElementById("home");
 const yesPage = document.getElementById("yesPage");
-const noPage = document.getElementById("noPage");
 const compliment = document.getElementById("compliment");
+const music = document.getElementById("music");
+const hearts = document.getElementById("hearts");
 
 const compliments = [
-  "Salma 💗 you’re the kind of person who makes moments feel special without trying.",
-  "Every time I think of you, Salma 😌 my heart feels lighter.",
-  "You have a calm beauty, Salma 🐧❤️ something rare.",
-  "Honestly Salma 💞 if kindness had a face, it would look like you.",
-  "Salma… you’re dangerously adorable 😺💘"
+  "Salma 💗 you make everything feel softer.",
+  "Thinking of you feels calm and warm 😌",
+  "You’re rare, Salma 🐧❤️",
+  "Some people are special without trying — you’re one of them."
 ];
 
-function showYes() {
-  home.classList.add("hidden");
-  noPage.classList.add("hidden");
-  yesPage.classList.remove("hidden");
-  newCompliment();
+function vibrate(pattern) {
+  if (navigator.vibrate) navigator.vibrate(pattern);
 }
 
-function showNo() {
+/* PASSWORD LOGIC */
+function unlock() {
+  const pass = document.getElementById("password").value;
+  if (pass.toLowerCase() === "salma") {
+    lock.classList.add("hidden");
+    home.classList.remove("hidden");
+    music.play();
+    vibrate([50,30,50]);
+  } else {
+    document.getElementById("lockMsg").innerText = "Hmm… that’s not it 💭";
+    vibrate([200]);
+  }
+}
+
+/* YES FLOW */
+function showYes() {
   home.classList.add("hidden");
-  yesPage.classList.add("hidden");
-  noPage.classList.remove("hidden");
+  yesPage.classList.remove("hidden");
+  newCompliment();
+  vibrate([120]);
 }
 
 function newCompliment() {
   compliment.innerText =
     compliments[Math.floor(Math.random() * compliments.length)];
+  vibrate([40,30,40]);
 }
+
+/* HEARTS ON TOUCH */
+document.addEventListener("click", (e) => {
+  const heart = document.createElement("span");
+  heart.innerText = "💗";
+  heart.style.left = e.clientX + "px";
+  heart.style.top = e.clientY + "px";
+  heart.style.position = "absolute";
+  heart.style.fontSize = "1.5rem";
+  heart.style.animation = "floatUp 2s ease forwards";
+  hearts.appendChild(heart);
+
+  setTimeout(() => heart.remove(), 2000);
+});
 </script>
 
 </body>
