@@ -160,8 +160,7 @@ input {
 <body>
 
 <div class="back hidden" id="backBtn" onclick="goBack()">⬅️</div>
-
-<div class="music" onclick="toggleMusic()">🎶</div>
+<div class="music" onclick="openSpotify()">🎶</div>
 
 <!-- PASSWORD -->
 <div class="card" id="lock">
@@ -185,6 +184,13 @@ input {
   <div id="compliment"></div>
   <br>
   <button class="yes" onclick="newCompliment()">Another 💗</button>
+
+  <!-- Social media links -->
+  <div class="social-links" style="margin-top:20px; display:flex; justify-content:center; gap:12px; flex-wrap:wrap;">
+    <a href="https://instagram.com/okm.salma" target="_blank" style="text-decoration:none;padding:10px 18px;border-radius:25px;background:linear-gradient(135deg,#ff5fa2,#ff85b8);color:white;font-weight:500;">📸 Instagram</a>
+    <a href="https://www.snapchat.com/add/okm-salma" target="_blank" style="text-decoration:none;padding:10px 18px;border-radius:25px;background:linear-gradient(135deg,#ff5fa2,#ff85b8);color:white;font-weight:500;">👻 Snapchat</a>
+    <a href="https://www.tiktok.com/@hppt__sokm" target="_blank" style="text-decoration:none;padding:10px 18px;border-radius:25px;background:linear-gradient(135deg,#ff5fa2,#ff85b8);color:white;font-weight:500;">🎵 TikTok</a>
+  </div>
 </div>
 
 <!-- NO -->
@@ -192,10 +198,6 @@ input {
   <p>Even if you said no… my heart still chose you 😌</p>
   <button class="yes" onclick="showYes()">Okay… tell me 💖</button>
 </div>
-
-<audio id="music" loop>
-  <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_3c6c9c5f57.mp3" type="audio/mpeg">
-</audio>
 
 <script>
 const compliments = [
@@ -206,11 +208,15 @@ const compliments = [
 ];
 
 let history = [];
-const music = document.getElementById("music");
+function vibrate(pattern=[20]) { if (navigator.vibrate) navigator.vibrate(pattern); }
 
-function vibrate(pattern=[20]) {
-  if (navigator.vibrate) navigator.vibrate(pattern);
-}
+const pass = document.getElementById("pass");
+const lock = document.getElementById("lock");
+const home = document.getElementById("home");
+const yesPage = document.getElementById("yesPage");
+const noPage = document.getElementById("noPage");
+const compliment = document.getElementById("compliment");
+const backBtn = document.getElementById("backBtn");
 
 function unlock() {
   if (pass.value.toLowerCase() === "salma") {
@@ -218,9 +224,7 @@ function unlock() {
     home.classList.remove("hidden");
     backBtn.classList.remove("hidden");
     vibrate([30,20,30]);
-  } else {
-    vibrate([100]);
-  }
+  } else vibrate([100]);
 }
 
 function showYes() {
@@ -257,9 +261,9 @@ function goBack() {
   vibrate([20]);
 }
 
-function toggleMusic() {
-  if (music.paused) music.play();
-  else music.pause();
+function openSpotify() {
+  // Romantic, calm Spotify playlist
+  window.open("https://open.spotify.com/playlist/37i9dQZF1DX50QitC6Oqtn", "_blank");
   vibrate([10]);
 }
 
