@@ -1,169 +1,243 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>For Salma 💖</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
-  <style>
-    body {
-      margin: 0;
-      min-height: 100vh;
-      font-family: 'Poppins', sans-serif;
-      background: linear-gradient(135deg, #ffe6f0, #fff);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-    }
+<meta charset="UTF-8">
+<title>For Salma 💖</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
 
-    .card {
-      background: white;
-      padding: 40px 25px;
-      border-radius: 25px;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-      max-width: 420px;
-      width: 100%;
-    }
+<style>
+* { box-sizing: border-box; }
 
-    h1 {
-      font-size: 1.4rem;
-      margin-bottom: 30px;
-      color: #333;
-    }
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: 'Poppins', sans-serif;
+  background: radial-gradient(circle at top, #ffe6f0, #fff);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
-    .salma {
-      position: relative;
-      display: inline-block;
-      font-weight: 700;
-      color: #e63973;
-    }
+/* FLOATING HEARTS */
+.hearts span {
+  position: absolute;
+  font-size: 2rem;
+  animation: floatUp linear infinite;
+  opacity: 0.7;
+}
 
-    .salma::before {
-      content: "❤️";
-      position: absolute;
-      top: -12px;
-      left: -12px;
-      animation: spin 6s linear infinite;
-    }
+@keyframes floatUp {
+  from {
+    transform: translateY(110vh) scale(0.6) rotate(0deg);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(-10vh) scale(1.2) rotate(360deg);
+    opacity: 1;
+  }
+}
 
-    .salma::after {
-      content: "🐧";
-      position: absolute;
-      bottom: -10px;
-      right: -12px;
-    }
+/* FLOATING CATS */
+.cats span {
+  position: absolute;
+  font-size: 2.2rem;
+  animation: floatSide ease-in-out infinite;
+}
 
-    @keyframes spin {
-      from { transform: rotate(0deg); }
-      to { transform: rotate(360deg); }
-    }
+@keyframes floatSide {
+  0% { transform: translateX(-20px); }
+  50% { transform: translateX(20px); }
+  100% { transform: translateX(-20px); }
+}
 
-    .buttons {
-      margin-top: 30px;
-      display: flex;
-      gap: 15px;
-      justify-content: center;
-    }
+/* CARD */
+.card {
+  position: relative;
+  background: white;
+  padding: 40px 30px;
+  border-radius: 30px;
+  box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+  max-width: 420px;
+  width: 90%;
+  text-align: center;
+  z-index: 10;
+  animation: pop 0.8s ease;
+}
 
-    button {
-      padding: 12px 25px;
-      border: none;
-      border-radius: 30px;
-      font-size: 1rem;
-      cursor: pointer;
-      transition: 0.3s ease;
-    }
+@keyframes pop {
+  from { transform: scale(0.8); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
 
-    .yes {
-      background: #ff5fa2;
-      color: white;
-    }
+h1 {
+  font-size: 1.4rem;
+  color: #333;
+}
 
-    .yes:hover {
-      transform: scale(1.05);
-    }
+/* SALMA MAGIC */
+.salma {
+  position: relative;
+  font-weight: 700;
+  color: #e63973;
+}
 
-    .no {
-      background: #eee;
-      color: #555;
-    }
+.salma::before {
+  content: "❤️";
+  position: absolute;
+  top: -18px;
+  left: -18px;
+  animation: spin 5s linear infinite;
+}
 
-    .hidden {
-      display: none;
-    }
+.salma::after {
+  content: "🐧";
+  position: absolute;
+  bottom: -18px;
+  right: -18px;
+}
 
-    .cat {
-      font-size: 2.5rem;
-      margin-bottom: 15px;
-    }
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
 
-    .message {
-      font-size: 1.05rem;
-      color: #444;
-    }
+/* BUTTONS */
+.buttons {
+  margin-top: 30px;
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+}
 
-    .heart {
-      font-size: 2rem;
-      margin-top: 15px;
-    }
-  </style>
+button {
+  padding: 12px 28px;
+  border: none;
+  border-radius: 30px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.yes {
+  background: linear-gradient(135deg, #ff5fa2, #ff85b8);
+  color: white;
+}
+
+.yes:hover {
+  transform: scale(1.1);
+}
+
+.no {
+  background: #eee;
+  color: #555;
+}
+
+.hidden { display: none; }
+
+.cat {
+  font-size: 3rem;
+  margin-bottom: 10px;
+}
+
+.message {
+  font-size: 1.1rem;
+  color: #444;
+  line-height: 1.6;
+}
+
+.heart-big {
+  font-size: 3rem;
+  animation: pulse 1.2s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+</style>
 </head>
+
 <body>
 
-  <div class="card" id="home">
-    <h1>
-      Do you wanna know what I think about you lalaa
-      <span class="salma">Salma</span>?
-    </h1>
+<!-- FLOATING BACKGROUND -->
+<div class="hearts">
+  <span style="left:10%; animation-duration:8s;">❤️</span>
+  <span style="left:30%; animation-duration:10s;">💖</span>
+  <span style="left:50%; animation-duration:7s;">💘</span>
+  <span style="left:70%; animation-duration:9s;">💗</span>
+  <span style="left:90%; animation-duration:11s;">❤️</span>
+</div>
 
-    <div class="buttons">
-      <button class="yes" onclick="showYes()">Yes</button>
-      <button class="no" onclick="showNo()">No</button>
-    </div>
+<div class="cats">
+  <span style="top:20%; left:5%;">🐱</span>
+  <span style="top:60%; right:5%;">🐈</span>
+  <span style="bottom:10%; left:40%;">😺</span>
+</div>
+
+<!-- HOME -->
+<div class="card" id="home">
+  <h1>
+    Do you wanna know what I think about you,
+    <span class="salma">Salma</span>?
+  </h1>
+
+  <div class="buttons">
+    <button class="yes" onclick="showYes()">Yes 💕</button>
+    <button class="no" onclick="showNo()">No 🙈</button>
   </div>
+</div>
 
-  <div class="card hidden" id="yesPage">
-    <div class="cat">🐱💞</div>
-    <div class="message" id="compliment"></div>
-    <div class="heart">❤️</div>
-    <br />
-    <button class="yes" onclick="newCompliment()">Another one 🐾</button>
+<!-- YES PAGE -->
+<div class="card hidden" id="yesPage">
+  <div class="cat">🐱💞</div>
+  <div class="message" id="compliment"></div>
+  <br>
+  <div class="heart-big">❤️</div>
+  <br><br>
+  <button class="yes" onclick="newCompliment()">Another one 🐾</button>
+</div>
+
+<!-- NO PAGE -->
+<div class="card hidden" id="noPage">
+  <div class="cat">🥺🐱</div>
+  <div class="message">
+    Even if you said no… 😌<br>
+    my heart still chose you.
   </div>
+  <br>
+  <button class="yes" onclick="showYes()">Okay… tell me 💖</button>
+</div>
 
-  <div class="card hidden" id="noPage">
-    <div class="cat">🥺🐱</div>
-    <div class="message">
-      Well… it doesn’t really matter 😌<br />
-      I still want you to know.
-    </div>
-    <br />
-    <button class="yes" onclick="showYes()">Okay… tell me 💖</button>
-  </div>
+<script>
+const compliments = [
+  "Salma 💗 you’re the kind of person who makes moments feel special without trying.",
+  "Every time I think of you, Salma 😌 my heart feels lighter.",
+  "You have a calm beauty, Salma 🐧❤️ something rare.",
+  "Honestly Salma 💞 if kindness had a face, it would look like you.",
+  "Salma… you’re dangerously adorable 😺💘"
+];
 
-  <script>
-    const compliments = [
-      "lala salma, i, wa raha anaa 🙂, ana chenooo wa hedar, and omniya diyali hiya ..... ",
-    ];
+function showYes() {
+  home.classList.add("hidden");
+  noPage.classList.add("hidden");
+  yesPage.classList.remove("hidden");
+  newCompliment();
+}
 
-    function showYes() 
-      document.getElementById('home').classList.add('hidden');
-      document.getElementById('noPage').classList.add('hidden');
-      document.getElementById('yesPage').classList.remove('hidden');
-      newCompliment();
-    }
+function showNo() {
+  home.classList.add("hidden");
+  yesPage.classList.add("hidden");
+  noPage.classList.remove("hidden");
+}
 
-    function showNo() {
-      document.getElementById('home').classList.add('hidden');
-      document.getElementById('yesPage').classList.add('hidden');
-      document.getElementById('noPage').classList.remove('hidden');
-    }
-
-    function newCompliment() {
-      const random = Math.floor(Math.random() * compliments.length);
-      document.getElementById('compliment').innerText = compliments[random];
-    }
-  </script>
+function newCompliment() {
+  compliment.innerText =
+    compliments[Math.floor(Math.random() * compliments.length)];
+}
+</script>
 
 </body>
 </html>
