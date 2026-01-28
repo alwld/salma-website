@@ -3,7 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <title>For Salma 💖</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- IMPORTANT: prevents zoom on input -->
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
 
@@ -15,49 +17,29 @@ body {
   min-height: 100vh;
   font-family: 'Poppins', sans-serif;
   background: radial-gradient(circle at top, #ffe6f0, #fff);
-  overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
 }
 
-/* FLOATING HEARTS BACKGROUND */
-.hearts span {
-  position: absolute;
-  font-size: 2rem;
-  animation: floatUp linear infinite;
-  opacity: 0.6;
-  pointer-events: none;
-}
-
-@keyframes floatUp {
-  from { transform: translateY(110vh) scale(0.6); opacity: 0; }
-  to { transform: translateY(-10vh) scale(1.2); opacity: 1; }
-}
-
-/* CARD */
+/* CARDS */
 .card {
   background: white;
-  padding: 40px 30px;
+  padding: 35px 25px;
   border-radius: 30px;
   box-shadow: 0 25px 50px rgba(0,0,0,0.15);
   max-width: 420px;
   width: 90%;
   text-align: center;
-  z-index: 10;
-  animation: pop 0.7s ease;
-}
-
-@keyframes pop {
-  from { transform: scale(0.85); opacity: 0; }
-  to { transform: scale(1); opacity: 1; }
+  animation: pop 0.6s ease;
 }
 
 .hidden { display: none; }
 
-h1 {
-  font-size: 1.4rem;
-  color: #333;
+@keyframes pop {
+  from { transform: scale(0.9); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
 }
 
 /* SALMA MAGIC */
@@ -70,202 +52,231 @@ h1 {
 .salma::before {
   content: "❤️";
   position: absolute;
-  top: -18px;
-  left: -18px;
-  animation: spin 6s linear infinite;
+  top: -20px;
+  left: -20px;
+  animation: spin 5s linear infinite;
 }
 
 .salma::after {
   content: "🐧";
   position: absolute;
-  bottom: -18px;
-  right: -18px;
+  bottom: -20px;
+  right: -20px;
 }
 
 @keyframes spin {
-  from { transform: rotate(0deg); }
+  from { transform: rotate(0); }
   to { transform: rotate(360deg); }
 }
 
 /* BUTTONS */
+.buttons {
+  margin-top: 25px;
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+}
+
 button {
-  margin-top: 20px;
-  padding: 12px 28px;
+  padding: 12px 26px;
   border: none;
   border-radius: 30px;
   font-size: 1rem;
   cursor: pointer;
+}
+
+.yes {
   background: linear-gradient(135deg, #ff5fa2, #ff85b8);
   color: white;
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
-button:hover {
-  transform: scale(1.08);
-  box-shadow: 0 12px 25px rgba(255,95,162,0.4);
+.no {
+  background: #eee;
+  color: #555;
 }
 
-button:active { transform: scale(0.95); }
-
+/* INPUT */
 input {
   width: 100%;
-  padding: 12px;
+  padding: 14px;
   border-radius: 20px;
   border: 1px solid #ddd;
-  margin-top: 15px;
-  font-family: 'Poppins', sans-serif;
+  font-size: 16px; /* critical for no zoom */
+  outline: none;
   text-align: center;
 }
 
-/* CONTENT */
-.message {
-  font-size: 1.1rem;
-  color: #444;
-  line-height: 1.6;
-  margin-top: 15px;
-  opacity: 0;
-  animation: fadeIn 0.6s forwards;
-}
-
-@keyframes fadeIn {
-  to { opacity: 1; }
-}
-
-.heart-big {
-  font-size: 3rem;
-  margin: 15px 0;
-  animation: pulse 1.2s infinite;
-}
-
-@keyframes pulse {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.2); }
-  100% { transform: scale(1); }
-}
-
-/* SOCIALS */
-.social-links {
+/* BACK BUTTON */
+.back {
+  position: fixed;
+  top: 15px;
+  left: 15px;
+  background: white;
+  border-radius: 50%;
+  width: 42px;
+  height: 42px;
   display: flex;
+  align-items: center;
   justify-content: center;
-  gap: 12px;
-  flex-wrap: wrap;
-  margin-top: 20px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+  cursor: pointer;
+  z-index: 100;
 }
 
-.social-links a {
-  text-decoration: none;
-  padding: 10px 18px;
-  border-radius: 25px;
-  background: linear-gradient(135deg, #ff5fa2, #ff85b8);
-  color: white;
-  font-weight: 500;
+/* TOUCH HEARTS */
+.heart {
+  position: absolute;
+  font-size: 24px;
+  pointer-events: none;
+  animation: explode 1s ease forwards;
+}
+
+@keyframes explode {
+  from { transform: scale(0.5); opacity: 1; }
+  to {
+    transform: translate(var(--x), var(--y)) scale(1.3);
+    opacity: 0;
+  }
+}
+
+/* MUSIC BUTTON */
+.music {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: white;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+  cursor: pointer;
 }
 </style>
 </head>
 
 <body>
 
-<!-- FLOATING HEARTS -->
-<div class="hearts" id="hearts"></div>
+<div class="back hidden" id="backBtn" onclick="goBack()">⬅️</div>
 
-<!-- PASSWORD SCREEN -->
+<div class="music" onclick="toggleMusic()">🎶</div>
+
+<!-- PASSWORD -->
 <div class="card" id="lock">
-  <h1>🔒 Only <span class="salma">Salma</span></h1>
-  <p style="font-size:0.95rem;color:#666;">
-    This little world is just for you 💗
-  </p>
-  <input type="password" id="password" placeholder="Enter the secret">
-  <button onclick="unlock()">Enter ✨</button>
-  <p id="lockMsg" style="font-size:0.85rem;color:#e63973;"></p>
+  <h2>🔒 Only <span class="salma">Salma</span></h2>
+  <input id="pass" type="password" placeholder="Enter password">
+  <br><br>
+  <button class="yes" onclick="unlock()">Enter 💖</button>
 </div>
 
 <!-- HOME -->
 <div class="card hidden" id="home">
-  <h1>
-    Do you wanna know what I think about you,
-    <span class="salma">Salma</span>?
-  </h1>
-  <button onclick="showYes()">Yes 💕</button>
-</div>
-
-<!-- YES PAGE -->
-<div class="card hidden" id="yesPage">
-  <div class="message" id="compliment"></div>
-  <div class="heart-big">❤️</div>
-  <button onclick="newCompliment()">Another one 🐾</button>
-
-  <div class="social-links">
-    <a href="https://instagram.com/okm.salma" target="_blank">📸 Instagram</a>
-    <a href="https://www.snapchat.com/add/okm-salma" target="_blank">👻 Snapchat</a>
-    <a href="https://www.tiktok.com/@hppt__sokm" target="_blank">🎵 TikTok</a>
+  <h1>Do you wanna know what I think about you, <span class="salma">Salma</span>?</h1>
+  <div class="buttons">
+    <button class="yes" onclick="showYes()">Yes 💕</button>
+    <button class="no" onclick="showNo()">No 🙈</button>
   </div>
 </div>
 
-<!-- BACKGROUND MUSIC -->
+<!-- YES -->
+<div class="card hidden" id="yesPage">
+  <div id="compliment"></div>
+  <br>
+  <button class="yes" onclick="newCompliment()">Another 💗</button>
+</div>
+
+<!-- NO -->
+<div class="card hidden" id="noPage">
+  <p>Even if you said no… my heart still chose you 😌</p>
+  <button class="yes" onclick="showYes()">Okay… tell me 💖</button>
+</div>
+
 <audio id="music" loop>
-  <!-- Replace with any soft/cute MP3 you like -->
-  <source src="https://cdn.pixabay.com/audio/2023/03/02/audio_7f1d2d1a1b.mp3" type="audio/mpeg">
+  <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_3c6c9c5f57.mp3" type="audio/mpeg">
 </audio>
 
 <script>
-const lock = document.getElementById("lock");
-const home = document.getElementById("home");
-const yesPage = document.getElementById("yesPage");
-const compliment = document.getElementById("compliment");
-const music = document.getElementById("music");
-const hearts = document.getElementById("hearts");
-
 const compliments = [
-  "Salma 💗 you make everything feel softer.",
-  "Thinking of you feels calm and warm 😌",
-  "You’re rare, Salma 🐧❤️",
-  "Some people are special without trying — you’re one of them."
+  "Salma 💗 you make the world feel softer.",
+  "You’re calm, rare, and beautiful Salma 🐧❤️",
+  "Every thought of you feels warm 😌",
+  "Salma… you’re effortlessly special 💘"
 ];
 
-function vibrate(pattern) {
+let history = [];
+const music = document.getElementById("music");
+
+function vibrate(pattern=[20]) {
   if (navigator.vibrate) navigator.vibrate(pattern);
 }
 
-/* PASSWORD LOGIC */
 function unlock() {
-  const pass = document.getElementById("password").value;
-  if (pass.toLowerCase() === "salma") {
+  if (pass.value.toLowerCase() === "salma") {
     lock.classList.add("hidden");
     home.classList.remove("hidden");
-    music.play();
-    vibrate([50,30,50]);
+    backBtn.classList.remove("hidden");
+    vibrate([30,20,30]);
   } else {
-    document.getElementById("lockMsg").innerText = "Hmm… that’s not it 💭";
-    vibrate([200]);
+    vibrate([100]);
   }
 }
 
-/* YES FLOW */
 function showYes() {
+  saveState();
   home.classList.add("hidden");
+  noPage.classList.add("hidden");
   yesPage.classList.remove("hidden");
   newCompliment();
-  vibrate([120]);
+  vibrate([20,10,20]);
+}
+
+function showNo() {
+  saveState();
+  home.classList.add("hidden");
+  yesPage.classList.add("hidden");
+  noPage.classList.remove("hidden");
+  vibrate([40]);
 }
 
 function newCompliment() {
-  compliment.innerText =
-    compliments[Math.floor(Math.random() * compliments.length)];
-  vibrate([40,30,40]);
+  compliment.innerText = compliments[Math.floor(Math.random()*compliments.length)];
+  vibrate([15,10,15]);
+}
+
+function saveState() {
+  history.push(document.querySelector(".card:not(.hidden)").id);
+}
+
+function goBack() {
+  const prev = history.pop();
+  if (!prev) return;
+  document.querySelectorAll(".card").forEach(c=>c.classList.add("hidden"));
+  document.getElementById(prev).classList.remove("hidden");
+  vibrate([20]);
+}
+
+function toggleMusic() {
+  if (music.paused) music.play();
+  else music.pause();
+  vibrate([10]);
 }
 
 /* HEARTS ON TOUCH */
-document.addEventListener("click", (e) => {
-  const heart = document.createElement("span");
-  heart.innerText = "💗";
-  heart.style.left = e.clientX + "px";
-  heart.style.top = e.clientY + "px";
-  heart.style.position = "absolute";
-  heart.style.fontSize = "1.5rem";
-  heart.style.animation = "floatUp 2s ease forwards";
-  hearts.appendChild(heart);
-
-  setTimeout(() => heart.remove(), 2000);
+document.addEventListener("touchstart", e => {
+  const t = e.touches[0];
+  for (let i=0;i<6;i++) {
+    const h = document.createElement("div");
+    h.className="heart";
+    h.innerText="❤️";
+    h.style.left=t.clientX+"px";
+    h.style.top=t.clientY+"px";
+    h.style.setProperty("--x",(Math.random()*200-100)+"px");
+    h.style.setProperty("--y",(Math.random()*200-100)+"px");
+    document.body.appendChild(h);
+    setTimeout(()=>h.remove(),1000);
+  }
 });
 </script>
 
