@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>For Salma 💖</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #ffe6f0, #fff);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .card {
+      background: white;
+      padding: 40px 25px;
+      border-radius: 25px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+      max-width: 420px;
+      width: 100%;
+    }
+
+    h1 {
+      font-size: 1.4rem;
+      margin-bottom: 30px;
+      color: #333;
+    }
+
+    .salma {
+      position: relative;
+      display: inline-block;
+      font-weight: 700;
+      color: #e63973;
+    }
+
+    .salma::before {
+      content: "❤️";
+      position: absolute;
+      top: -12px;
+      left: -12px;
+      animation: spin 6s linear infinite;
+    }
+
+    .salma::after {
+      content: "🐧";
+      position: absolute;
+      bottom: -10px;
+      right: -12px;
+    }
+
+    @keyframes spin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    .buttons {
+      margin-top: 30px;
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+    }
+
+    button {
+      padding: 12px 25px;
+      border: none;
+      border-radius: 30px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+
+    .yes {
+      background: #ff5fa2;
+      color: white;
+    }
+
+    .yes:hover {
+      transform: scale(1.05);
+    }
+
+    .no {
+      background: #eee;
+      color: #555;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .cat {
+      font-size: 2.5rem;
+      margin-bottom: 15px;
+    }
+
+    .message {
+      font-size: 1.05rem;
+      color: #444;
+    }
+
+    .heart {
+      font-size: 2rem;
+      margin-top: 15px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card" id="home">
+    <h1>
+      Do you wanna know what I think about you lalaa
+      <span class="salma">Salma</span>?
+    </h1>
+
+    <div class="buttons">
+      <button class="yes" onclick="showYes()">Yes</button>
+      <button class="no" onclick="showNo()">No</button>
+    </div>
+  </div>
+
+  <div class="card hidden" id="yesPage">
+    <div class="cat">🐱💞</div>
+    <div class="message" id="compliment"></div>
+    <div class="heart">❤️</div>
+    <br />
+    <button class="yes" onclick="newCompliment()">Another one 🐾</button>
+  </div>
+
+  <div class="card hidden" id="noPage">
+    <div class="cat">🥺🐱</div>
+    <div class="message">
+      Well… it doesn’t really matter 😌<br />
+      I still want you to know.
+    </div>
+    <br />
+    <button class="yes" onclick="showYes()">Okay… tell me 💖</button>
+  </div>
+
+  <script>
+    const compliments = [
+      "You have a calm kindness that feels rare.",
+      "You make everything feel a little softer just by being you.",
+      "Your presence alone brings comfort.",
+      "You’re effortlessly graceful in the way you exist.",
+      "You have a beautiful way of making people feel seen.",
+      "Your smile feels like good news.",
+      "You carry warmth without even trying.",
+      "You’re one of those people the world needs more of.",
+      "Your energy feels safe and genuine.",
+      "There’s something quietly special about you.",
+      "You turn ordinary moments into nicer ones.",
+      "Your kindness feels natural, not forced.",
+      "You have a heart that shows in small details.",
+      "Being around you feels easy.",
+      "You bring light without being loud.",
+      "You feel like comfort and confidence combined.",
+      "You’re beautifully thoughtful.",
+      "You make the atmosphere better just by being there.",
+      "You’re gentle in the best possible way.",
+      "You feel like warmth on a cold day.",
+      "Your presence is genuinely appreciated.",
+      "You’re naturally charming.",
+      "You have a lovely way of existing.",
+      "You make kindness look effortless.",
+      "You’re quietly unforgettable.",
+      "You feel like peace.",
+      "You leave good impressions without trying.",
+      "You’re the definition of soft strength.",
+      "You have a beautiful soul.",
+      "You’re simply wonderful as you are."
+    ];
+
+    function showYes() {
+      document.getElementById('home').classList.add('hidden');
+      document.getElementById('noPage').classList.add('hidden');
+      document.getElementById('yesPage').classList.remove('hidden');
+      newCompliment();
+    }
+
+    function showNo() {
+      document.getElementById('home').classList.add('hidden');
+      document.getElementById('yesPage').classList.add('hidden');
+      document.getElementById('noPage').classList.remove('hidden');
+    }
+
+    function newCompliment() {
+      const random = Math.floor(Math.random() * compliments.length);
+      document.getElementById('compliment').innerText = compliments[random];
+    }
+  </script>
+
+</body>
+</html>
