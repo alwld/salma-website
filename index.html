@@ -20,27 +20,28 @@ body {
   align-items: center;
   justify-content: center;
   overflow: hidden;
+  -webkit-font-smoothing: antialiased;
 }
 
 /* FLOATING BACKGROUND HEARTS */
 .bg-heart {
   position: absolute;
-  font-size: 20px;
-  opacity: 0.15;
+  font-size: 18px;
+  opacity: 0.12;
   animation: floatUp linear infinite;
-  filter: blur(0.3px);
+  filter: blur(0.4px);
 }
 @keyframes floatUp {
-  from { transform: translateY(110vh) scale(0.8); }
-  to { transform: translateY(-10vh) scale(1.2); }
+  from { transform: translateY(120vh) scale(0.8); }
+  to { transform: translateY(-20vh) scale(1.2); }
 }
 
-/* CARDS */
+/* CARD */
 .card {
   background: white;
-  padding: 35px 25px;
+  padding: 36px 26px;
   border-radius: 30px;
-  box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+  box-shadow: 0 30px 60px rgba(0,0,0,0.15);
   max-width: 420px;
   width: 90%;
   text-align: center;
@@ -51,7 +52,7 @@ body {
 .hidden { display: none; }
 
 @keyframes pop {
-  from { transform: scale(0.9); opacity: 0; }
+  from { transform: scale(0.92); opacity: 0; }
   to { transform: scale(1); opacity: 1; }
 }
 
@@ -67,7 +68,7 @@ body {
   position: absolute;
   top: -22px;
   left: -22px;
-  animation: spin 6s linear infinite;
+  animation: spin 7s linear infinite;
 }
 
 .salma::after {
@@ -84,14 +85,14 @@ body {
 
 /* BUTTONS */
 .buttons {
-  margin-top: 25px;
+  margin-top: 26px;
   display: flex;
   gap: 15px;
   justify-content: center;
 }
 
 button {
-  padding: 12px 26px;
+  padding: 13px 28px;
   border: none;
   border-radius: 30px;
   font-size: 1rem;
@@ -111,8 +112,8 @@ button {
 /* INPUT */
 input {
   width: 100%;
-  padding: 14px;
-  border-radius: 20px;
+  padding: 15px;
+  border-radius: 22px;
   border: 1px solid #ddd;
   font-size: 16px;
   outline: none;
@@ -126,12 +127,12 @@ input {
   left: 15px;
   background: white;
   border-radius: 50%;
-  width: 42px;
-  height: 42px;
+  width: 44px;
+  height: 44px;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+  box-shadow: 0 5px 18px rgba(0,0,0,0.25);
   cursor: pointer;
   z-index: 100;
 }
@@ -143,12 +144,12 @@ input {
   right: 20px;
   background: white;
   border-radius: 50%;
-  width: 50px;
-  height: 50px;
+  width: 52px;
+  height: 52px;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+  box-shadow: 0 5px 18px rgba(0,0,0,0.25);
   cursor: pointer;
   z-index: 100;
 }
@@ -158,24 +159,44 @@ input {
   position: absolute;
   font-size: 26px;
   pointer-events: none;
-  animation: explode 1.2s ease forwards;
-  filter: drop-shadow(0 0 8px rgba(255,90,150,0.6));
+  animation: explode 1.3s ease forwards;
+  filter: drop-shadow(0 0 10px rgba(255,90,150,0.6));
 }
 @keyframes explode {
   from { transform: scale(0.5); opacity: 1; }
   to {
-    transform: translate(var(--x), var(--y)) scale(1.4) rotate(20deg);
+    transform: translate(var(--x), var(--y)) scale(1.5);
     opacity: 0;
   }
 }
 
-/* BIRTHDAY */
+/* COUNTDOWN */
 #countdown {
-  margin-top: 15px;
+  margin-top: 14px;
   font-size: 0.95rem;
   color: #e63973;
 }
 
+/* SOCIALS */
+.socials {
+  margin-top: 26px;
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.socials a {
+  text-decoration: none;
+  padding: 10px 18px;
+  border-radius: 25px;
+  background: linear-gradient(135deg,#ff5fa2,#ff85b8);
+  color: white;
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+/* BIRTHDAY OVERLAY */
 #birthdayOverlay {
   position: fixed;
   inset: 0;
@@ -188,14 +209,14 @@ input {
   z-index: 999;
   animation: fadeIn 1s ease;
 }
-@keyframes fadeIn { from { opacity:0 } to { opacity:1 } }
+@keyframes fadeIn { from {opacity:0} to {opacity:1} }
 
 .birthdayCard {
   animation: float 3s ease-in-out infinite;
 }
 @keyframes float {
   0%,100% { transform: translateY(0); }
-  50% { transform: translateY(-15px); }
+  50% { transform: translateY(-16px); }
 }
 </style>
 </head>
@@ -230,52 +251,60 @@ input {
   <div id="compliment"></div>
   <br>
   <button class="yes" onclick="newCompliment()">Another 💗</button>
+
+  <div class="socials">
+    <a href="https://instagram.com/okm.salma" target="_blank">📸 Instagram</a>
+    <a href="https://www.snapchat.com/add/okm-salma" target="_blank">👻 Snapchat</a>
+    <a href="https://www.tiktok.com/@hppt__sokm" target="_blank">🎵 TikTok</a>
+  </div>
 </div>
 
 <!-- NO -->
 <div class="card hidden" id="noPage">
-  <p>Even if you said no… my heart still chose you 😌</p>
+  <p>Even if Salma said no… my heart still chose Salma 😌</p>
   <button class="yes" onclick="showYes()">Okay… tell me 💖</button>
 </div>
 
 <script>
 /* BACKGROUND HEARTS */
-for(let i=0;i<18;i++){
+for(let i=0;i<20;i++){
   const h=document.createElement("div");
   h.className="bg-heart";
   h.innerText="❤️";
   h.style.left=Math.random()*100+"vw";
-  h.style.animationDuration=(12+Math.random()*10)+"s";
+  h.style.animationDuration=(14+Math.random()*10)+"s";
   h.style.fontSize=(14+Math.random()*18)+"px";
   document.body.appendChild(h);
 }
 
-/* LOGIC */
+/* TEXT */
 const compliments=[
-  "Salma, the world feels kinder because you exist 💖",
-  "You are gentle in a way that stays with people 🌸",
-  "I’m grateful for you more than you know 🤍",
-  "You are rare, calm, and beautifully real ✨"
+  "Salma, the world is genuinely softer because you exist 💖",
+  "Salma, your kindness leaves a mark without trying 🌸",
+  "Salma, I’m grateful for you in ways words can’t fully explain 🤍",
+  "Salma, you are rare, calm, and beautifully real ✨"
 ];
 
 const monthlyMessages=[
-  "January reminds me how strong and fresh you are 💫",
-  "February exists just to celebrate you 🎂",
-  "March blooms differently because of you 🌸",
-  "April feels softer when I think of you 💗",
-  "May shines with your kindness ☀️",
-  "June carries your warmth 🤍",
-  "July laughs like you 😌",
-  "August glows quietly, like your smile ✨",
-  "September feels safe because of you 🍂",
-  "October is gentle, just like you 🧸",
-  "November is grateful for you 🤍",
-  "December ends the year beautifully — like you 💖"
+  "Salma, January feels strong and hopeful because of you 💫",
+  "Salma, February exists just to celebrate you 🎂",
+  "Salma, March blooms differently because you exist 🌸",
+  "Salma, April feels gentler when I think of you 💗",
+  "Salma, May shines brighter with your kindness ☀️",
+  "Salma, June carries your warmth 🤍",
+  "Salma, July laughs softly like you 😌",
+  "Salma, August glows quietly, just like your smile ✨",
+  "Salma, September feels safe because of you 🍂",
+  "Salma, October is gentle, just like you 🧸",
+  "Salma, November is grateful for you 🤍",
+  "Salma, December ends the year beautifully — like you 💖"
 ];
 
 let history=[];
-const birthday=new Date("2007-02-24T00:00:00");
+const birthdayMonth=1;
+const birthdayDay=24;
 
+/* NAV */
 function unlock(){
   if(pass.value.toLowerCase()==="salma"){
     lock.classList.add("hidden");
@@ -326,27 +355,32 @@ function openSpotify(){
 /* COUNTDOWN */
 function updateCountdown(){
   const now=new Date();
-  let next=new Date(now.getFullYear(),1,24);
+  let next=new Date(now.getFullYear(),birthdayMonth,birthdayDay);
   if(now>next) next.setFullYear(now.getFullYear()+1);
+
   const diff=next-now;
   const d=Math.floor(diff/86400000);
   const h=Math.floor(diff%86400000/3600000);
   const m=Math.floor(diff%3600000/60000);
-  document.getElementById("countdown").innerText=
-    `🎂 ${d} days ${h}h ${m}m until your birthday, Salma`;
-  if(now.getMonth()===1 && now.getDate()===24) showBirthday();
+
+  countdown.innerText=`🎂 ${d} days ${h}h ${m}m until your birthday, Salma`;
+
+  if(now.getMonth()===birthdayMonth && now.getDate()===birthdayDay){
+    showBirthday();
+  }
 }
 setInterval(updateCountdown,1000);
 updateCountdown();
 
 /* BIRTHDAY */
 function showBirthday(){
+  if(document.getElementById("birthdayOverlay")) return;
   const o=document.createElement("div");
   o.id="birthdayOverlay";
   o.innerHTML=`
     <div class="birthdayCard">
       <h1>🎉 Happy Birthday Salma 🎉</h1>
-      <p>The world is genuinely better because you exist.</p>
+      <p>Salma, the world is truly better because you exist.</p>
       <p>— from me to you 🤍</p>
       <br>
       <button class="yes" onclick="this.parentElement.parentElement.remove()">Close 💖</button>
@@ -367,7 +401,7 @@ document.addEventListener("touchstart",e=>{
     h.style.setProperty("--x",(Math.random()*220-110)+"px");
     h.style.setProperty("--y",(Math.random()*220-110)+"px");
     document.body.appendChild(h);
-    setTimeout(()=>h.remove(),1200);
+    setTimeout(()=>h.remove(),1300);
   }
 });
 </script>
