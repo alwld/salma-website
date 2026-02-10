@@ -11,10 +11,7 @@
 <style>
 * { box-sizing: border-box; }
 
-html {
-  height: 100%;
-  -webkit-text-size-adjust: 100%;
-}
+html { height: 100%; -webkit-text-size-adjust: 100%; }
 
 body {
   margin: 0;
@@ -26,10 +23,7 @@ body {
   justify-content: center;
   overflow: hidden;
   -webkit-font-smoothing: antialiased;
-  padding: env(safe-area-inset-top)
-           env(safe-area-inset-right)
-           env(safe-area-inset-bottom)
-           env(safe-area-inset-left);
+  padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
 }
 
 /* FLOATING BACKGROUND HEARTS */
@@ -69,209 +63,59 @@ body {
 }
 
 /* SALMA MAGIC */
-.salma {
-  position: relative;
-  font-weight: 700;
-  color: #e63973;
-}
-
-.salma::before {
-  content: "❤️";
-  position: absolute;
-  top: -22px;
-  left: -22px;
-  animation: spin 7s linear infinite;
-}
-
-.salma::after {
-  content: "🐧";
-  position: absolute;
-  bottom: -22px;
-  right: -22px;
-}
-
-@keyframes spin {
-  from { transform: rotate(0); }
-  to { transform: rotate(360deg); }
-}
+.salma { position: relative; font-weight: 700; color: #e63973; }
+.salma::before { content: "❤️"; position: absolute; top: -22px; left: -22px; animation: spin 7s linear infinite; }
+.salma::after { content: "🐧"; position: absolute; bottom: -22px; right: -22px; }
+@keyframes spin { from { transform: rotate(0); } to { transform: rotate(360deg); } }
 
 /* BUTTONS */
-.buttons {
-  margin-top: 26px;
-  display: flex;
-  gap: 15px;
-  justify-content: center;
-}
-
-button {
-  padding: 13px 28px;
-  border: none;
-  border-radius: 30px;
-  font-size: 1rem;
-  cursor: pointer;
-}
-
-.yes {
-  background: linear-gradient(135deg, #ff5fa2, #ff85b8);
-  color: white;
-}
-
-.no {
-  background: #eee;
-  color: #555;
-}
+.buttons { margin-top: 26px; display: flex; gap: 15px; justify-content: center; }
+button { padding: 13px 28px; border: none; border-radius: 30px; font-size: 1rem; cursor: pointer; transition: transform 0.2s; }
+button:hover { transform: scale(1.1); }
+.yes { background: linear-gradient(135deg, #ff5fa2, #ff85b8); color: white; }
+.no { background: #eee; color: #555; }
 
 /* INPUT */
-input {
-  width: 100%;
-  padding: 15px;
-  border-radius: 22px;
-  border: 1px solid #ddd;
-  font-size: 16px;
-  outline: none;
-  text-align: center;
-}
+input { width: 100%; padding: 15px; border-radius: 22px; border: 1px solid #ddd; font-size: 16px; outline: none; text-align: center; }
 
 /* BACK */
-.back {
-  position: fixed;
-  top: 15px;
-  left: 15px;
-  background: white;
-  border-radius: 50%;
-  width: 44px;
-  height: 44px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 5px 18px rgba(0,0,0,0.25);
-  cursor: pointer;
-  z-index: 100;
-}
+.back { position: fixed; top: 15px; left: 15px; background: white; border-radius: 50%; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; box-shadow: 0 5px 18px rgba(0,0,0,0.25); cursor: pointer; z-index: 100; }
 
 /* MUSIC */
-.music {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background: white;
-  border-radius: 50%;
-  width: 52px;
-  height: 52px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 5px 18px rgba(0,0,0,0.25);
-  cursor: pointer;
-  z-index: 100;
-}
+.music { position: fixed; bottom: 20px; right: 20px; background: white; border-radius: 50%; width: 52px; height: 52px; display: flex; align-items: center; justify-content: center; box-shadow: 0 5px 18px rgba(0,0,0,0.25); cursor: pointer; z-index: 100; }
 
 /* TOUCH HEARTS */
-.heart {
-  position: absolute;
-  font-size: 26px;
-  pointer-events: none;
-  animation: explode 1.3s ease forwards;
-  filter: drop-shadow(0 0 10px rgba(255,90,150,0.6));
-}
-@keyframes explode {
-  from { transform: scale(0.5); opacity: 1; }
-  to {
-    transform: translate(var(--x), var(--y)) scale(1.5);
-    opacity: 0;
-  }
-}
+.heart { position: absolute; font-size: 26px; pointer-events: none; animation: explode 1.3s ease forwards; filter: drop-shadow(0 0 10px rgba(255,90,150,0.6)); }
+@keyframes explode { from { transform: scale(0.5); opacity: 1; } to { transform: translate(var(--x), var(--y)) scale(1.5); opacity: 0; } }
 
 /* COUNTDOWN */
-#countdown {
-  margin-top: 14px;
-  font-size: 0.95rem;
-  color: #e63973;
-}
+#countdown { margin-top: 14px; font-size: 0.95rem; color: #e63973; }
 
 /* SOCIALS */
-.socials {
-  margin-top: 26px;
-  display: flex;
-  gap: 12px;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-
-.socials a {
-  text-decoration: none;
-  padding: 10px 18px;
-  border-radius: 25px;
-  background: linear-gradient(135deg,#ff5fa2,#ff85b8);
-  color: white;
-  font-weight: 500;
-  font-size: 0.9rem;
-}
+.socials { margin-top: 26px; display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+.socials a { text-decoration: none; padding: 10px 18px; border-radius: 25px; background: linear-gradient(135deg,#ff5fa2,#ff85b8); color: white; font-weight: 500; font-size: 0.9rem; }
 
 /* BIRTHDAY OVERLAY */
-#birthdayOverlay {
-  position: fixed;
-  inset: 0;
-  background: radial-gradient(circle, #ffb3d9, #ff5fa2);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  color: white;
-  z-index: 999;
-  animation: fadeIn 1s ease;
-}
+#birthdayOverlay { position: fixed; inset: 0; background: radial-gradient(circle, #ffb3d9, #ff5fa2); display: flex; align-items: center; justify-content: center; text-align: center; color: white; z-index: 999; animation: fadeIn 1s ease; }
 @keyframes fadeIn { from {opacity:0} to {opacity:1} }
-
-.birthdayCard {
-  animation: float 3s ease-in-out infinite;
-}
-@keyframes float {
-  0%,100% { transform: translateY(0); }
-  50% { transform: translateY(-16px); }
-}
+.birthdayCard { animation: float 3s ease-in-out infinite; }
+@keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-16px); } }
 
 /* VALENTINE POPUP */
-#valentinePopup {
-  position: fixed;
-  inset: 0;
-  background: rgba(255,200,220,0.55);
-  backdrop-filter: blur(18px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 2000;
-}
-
-.valentineCard {
-  background: white;
-  padding: 36px 28px;
-  border-radius: 34px;
-  max-width: 420px;
-  width: 90%;
-  text-align: center;
-  animation: applePop 0.7s cubic-bezier(.2,.8,.2,1);
-  box-shadow: 0 40px 80px rgba(0,0,0,0.2);
-}
-
-@keyframes applePop {
-  from { transform: scale(0.85); opacity: 0; }
-  to { transform: scale(1); opacity: 1; }
-}
+#valentinePopup { position: fixed; inset: 0; background: rgba(255,200,220,0.55); backdrop-filter: blur(18px); display: flex; align-items: center; justify-content: center; z-index: 2000; }
+.valentineCard { background: white; padding: 36px 28px; border-radius: 34px; max-width: 420px; width: 90%; text-align: center; animation: applePop 0.7s cubic-bezier(.2,.8,.2,1); box-shadow: 0 40px 80px rgba(0,0,0,0.2); }
+@keyframes applePop { from { transform: scale(0.85); opacity: 0; } to { transform: scale(1); opacity: 1; } }
 
 /* HEART STORM */
-@keyframes rise {
-  from { transform: translateY(0) scale(0.8); opacity: 0; }
-  to { transform: translateY(-130vh) scale(1.4); opacity: 1; }
-}
+@keyframes rise { from { transform: translateY(0) scale(0.8); opacity: 0; } to { transform: translateY(-130vh) scale(1.4); opacity: 1; } }
 
 /* MOBILE */
-@media (max-width: 420px) {
-  .card { padding: 28px 20px; }
-  h1 { font-size: 1.4rem; }
-  h2 { font-size: 1.2rem; }
-  button { font-size: 0.95rem; }
-}
+@media (max-width: 420px) { .card { padding: 28px 20px; } h1 { font-size: 1.4rem; } h2 { font-size: 1.2rem; } button { font-size: 0.95rem; } }
+
+/* EASTER EGG HEARTS */
+.easterHeart { position: absolute; font-size: 30px; cursor: pointer; animation: pulse 1.5s infinite; }
+@keyframes pulse { 0%,100% { transform: scale(1); } 50% { transform: scale(1.3); } }
+
 </style>
 </head>
 
@@ -354,7 +198,6 @@ const compliments=[
   "Salma, I’m grateful for you in ways words can’t fully explain 🤍",
   "Salma, you are rare, calm, and beautifully real ✨"
 ];
-
 const monthlyMessages=[
   "Salma, January feels strong and hopeful because of you 💫",
   "Salma, February exists just to celebrate you 🎂",
@@ -375,143 +218,55 @@ const birthdayMonth=1;
 const birthdayDay=24;
 
 /* NAV */
-function unlock(){
-  if(pass.value.toLowerCase()==="salma"){
-    lock.classList.add("hidden");
-    home.classList.remove("hidden");
-    backBtn.classList.remove("hidden");
-  }
-}
-
-function showYes(){
-  saveState();
-  home.classList.add("hidden");
-  noPage.classList.add("hidden");
-  yesPage.classList.remove("hidden");
-  newCompliment();
-}
-
-function showNo(){
-  saveState();
-  home.classList.add("hidden");
-  yesPage.classList.add("hidden");
-  noPage.classList.remove("hidden");
-}
-
-function newCompliment(){
-  const now=new Date();
-  if(now.getDate()===1){
-    compliment.innerText=monthlyMessages[now.getMonth()];
-  } else {
-    compliment.innerText=compliments[Math.floor(Math.random()*compliments.length)];
-  }
-}
-
-function saveState(){
-  history.push(document.querySelector(".card:not(.hidden)").id);
-}
-
-function goBack(){
-  const prev=history.pop();
-  if(!prev)return;
-  document.querySelectorAll(".card").forEach(c=>c.classList.add("hidden"));
-  document.getElementById(prev).classList.remove("hidden");
-}
-
-function openSpotify(){
-  window.open("https://open.spotify.com/playlist/37i9dQZF1DX50QitC6Oqtn","_blank");
-}
+function unlock(){if(pass.value.toLowerCase()==="salma"){lock.classList.add("hidden");home.classList.remove("hidden");backBtn.classList.remove("hidden");}}
+function showYes(){saveState();home.classList.add("hidden");noPage.classList.add("hidden");yesPage.classList.remove("hidden");newCompliment();spawnEasterHearts();}
+function showNo(){saveState();home.classList.add("hidden");yesPage.classList.add("hidden");noPage.classList.remove("hidden");}
+function newCompliment(){const now=new Date();compliment.innerText=(now.getDate()===1)?monthlyMessages[now.getMonth()]:compliments[Math.floor(Math.random()*compliments.length)];}
+function saveState(){history.push(document.querySelector(".card:not(.hidden)").id);}
+function goBack(){const prev=history.pop();if(!prev)return;document.querySelectorAll(".card").forEach(c=>c.classList.add("hidden"));document.getElementById(prev).classList.remove("hidden");}
+function openSpotify(){window.open("https://open.spotify.com/playlist/37i9dQZF1DX50QitC6Oqtn","_blank");}
 
 /* COUNTDOWN */
-function updateCountdown(){
-  const now=new Date();
-  let next=new Date(now.getFullYear(),birthdayMonth,birthdayDay);
-  if(now>next) next.setFullYear(now.getFullYear()+1);
-
-  const diff=next-now;
-  const d=Math.floor(diff/86400000);
-  const h=Math.floor(diff%86400000/3600000);
-  const m=Math.floor(diff%3600000/60000);
-
-  countdown.innerText=`🎂 ${d} days ${h}h ${m}m until your birthday, Salma`;
-
-  if(now.getMonth()===birthdayMonth && now.getDate()===birthdayDay){
-    showBirthday();
-  }
-}
-setInterval(updateCountdown,1000);
-updateCountdown();
+function updateCountdown(){const now=new Date();let next=new Date(now.getFullYear(),birthdayMonth,birthdayDay);if(now>next) next.setFullYear(now.getFullYear()+1);const diff=next-now;const d=Math.floor(diff/86400000);const h=Math.floor(diff%86400000/3600000);const m=Math.floor(diff%3600000/60000);countdown.innerText=`🎂 ${d} days ${h}h ${m}m until your birthday, Salma`;if(now.getMonth()===birthdayMonth && now.getDate()===birthdayDay){showBirthday();}}
+setInterval(updateCountdown,1000); updateCountdown();
 
 /* BIRTHDAY */
-function showBirthday(){
-  if(document.getElementById("birthdayOverlay")) return;
-  const o=document.createElement("div");
-  o.id="birthdayOverlay";
-  o.innerHTML=`
-    <div class="birthdayCard">
-      <h1>🎉 Happy Birthday Salma 🎉</h1>
-      <p>Salma, the world is truly better because you exist.</p>
-      <p>— from me to you 🤍</p>
-      <br>
-      <button class="yes" onclick="this.parentElement.parentElement.remove()">Close 💖</button>
-    </div>`;
-  document.body.appendChild(o);
-}
-function previewBirthday(){ showBirthday(); }
+function showBirthday(){if(document.getElementById("birthdayOverlay")) return;const o=document.createElement("div");o.id="birthdayOverlay";o.innerHTML=`<div class="birthdayCard"><h1>🎉 Happy Birthday Salma 🎉</h1><p>Salma, the world is truly better because you exist.</p><p>— from me to you 🤍</p><br><button class="yes" onclick="this.parentElement.parentElement.remove()">Close 💖</button></div>`;document.body.appendChild(o);}
+function previewBirthday(){showBirthday();}
 
 /* TOUCH HEARTS */
-document.addEventListener("touchstart",e=>{
-  const t=e.touches[0];
-  for(let i=0;i<6;i++){
-    const h=document.createElement("div");
-    h.className="heart";
-    h.innerText="❤️";
-    h.style.left=t.clientX+"px";
-    h.style.top=t.clientY+"px";
-    h.style.setProperty("--x",(Math.random()*220-110)+"px");
-    h.style.setProperty("--y",(Math.random()*220-110)+"px");
-    document.body.appendChild(h);
-    setTimeout(()=>h.remove(),1300);
-  }
-});
+document.addEventListener("touchstart",e=>{const t=e.touches[0];for(let i=0;i<6;i++){const h=document.createElement("div");h.className="heart";h.innerText="❤️";h.style.left=t.clientX+"px";h.style.top=t.clientY+"px";h.style.setProperty("--x",(Math.random()*220-110)+"px");h.style.setProperty("--y",(Math.random()*220-110)+"px");document.body.appendChild(h);setTimeout(()=>h.remove(),1300);}});
 
 /* VALENTINE */
-(function(){
-  const now=new Date();
-  const end=new Date(now.getFullYear(),1,15);
-  if(now<end){
-    document.getElementById("valentinePopup").classList.remove("hidden");
-  }
-})();
+(function(){const now=new Date();const end=new Date(now.getFullYear(),1,15);if(now<end){document.getElementById("valentinePopup").classList.remove("hidden");}})();
 
 /* RUNAWAY NO */
 const noBtn=document.getElementById("runawayNo");
-if(noBtn){
-  noBtn.addEventListener("mouseover",moveNo);
-  noBtn.addEventListener("touchstart",moveNo);
-}
-function moveNo(){
-  noBtn.style.position="fixed";
-  noBtn.style.left=Math.random()*(window.innerWidth-100)+"px";
-  noBtn.style.top=Math.random()*(window.innerHeight-100)+"px";
-}
+if(noBtn){noBtn.addEventListener("mouseover",moveNo);noBtn.addEventListener("touchstart",moveNo);}
+function moveNo(){noBtn.style.position="fixed";noBtn.style.left=Math.random()*(window.innerWidth-100)+"px";noBtn.style.top=Math.random()*(window.innerHeight-100)+"px";}
 
 /* ACCEPT VALENTINE */
 function acceptValentine(){
   document.getElementById("valentinePopup").remove();
-  for(let i=0;i<120;i++){
-    setTimeout(()=>{
-      const h=document.createElement("div");
-      h.innerText="❤️";
-      h.style.position="fixed";
-      h.style.left=Math.random()*100+"vw";
-      h.style.top="110vh";
-      h.style.fontSize=(20+Math.random()*30)+"px";
-      h.style.animation=`rise ${6+Math.random()*4}s linear`;
-      h.style.filter="drop-shadow(0 0 18px rgba(255,90,150,0.8))";
-      document.body.appendChild(h);
-      setTimeout(()=>h.remove(),10000);
-    },i*60);
+  startHeartStorm();
+  startConfetti();
+}
+
+function startHeartStorm(){for(let i=0;i<120;i++){setTimeout(()=>{const h=document.createElement("div");h.innerText="❤️";h.style.position="fixed";h.style.left=Math.random()*100+"vw";h.style.top="110vh";h.style.fontSize=(20+Math.random()*30)+"px";h.style.animation=`rise ${6+Math.random()*4}s linear`;h.style.filter="drop-shadow(0 0 18px rgba(255,90,150,0.8))";document.body.appendChild(h);setTimeout(()=>h.remove(),10000);},i*60);}}
+function startConfetti(){const colors=["#ff5fa2","#ff85b8","#fff200","#00ffee","#ff8c00"];for(let i=0;i<200;i++){setTimeout(()=>{const c=document.createElement("div");c.style.position="fixed";c.style.left=Math.random()*100+"vw";c.style.top="-10px";c.style.width="8px";c.style.height="8px";c.style.background=colors[Math.floor(Math.random()*colors.length)];c.style.borderRadius="50%";c.style.opacity=Math.random();c.style.transition="all 5s linear";document.body.appendChild(c);setTimeout(()=>{c.style.top="110vh";c.style.transform=`rotate(${Math.random()*360}deg)`;},50);setTimeout(()=>c.remove(),5000);},i*15);}} 
+
+/* EASTER EGG HEARTS */
+function spawnEasterHearts(){
+  for(let i=0;i<5;i++){
+    const h=document.createElement("div");
+    h.className="easterHeart";
+    h.innerText="💖";
+    h.style.left=(20+i*12)+"%";
+    h.style.top=(40+i*5)+"%";
+    h.addEventListener("click",()=>{
+      alert("💌 Surprise! I love you forever, Salma! 💌");
+    });
+    document.body.appendChild(h);
   }
 }
 </script>
