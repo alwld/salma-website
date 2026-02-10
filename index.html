@@ -11,6 +11,11 @@
 <style>
 * { box-sizing: border-box; }
 
+html {
+  height: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+
 body {
   margin: 0;
   min-height: 100vh;
@@ -21,6 +26,10 @@ body {
   justify-content: center;
   overflow: hidden;
   -webkit-font-smoothing: antialiased;
+  padding: env(safe-area-inset-top)
+           env(safe-area-inset-right)
+           env(safe-area-inset-bottom)
+           env(safe-area-inset-left);
 }
 
 /* FLOATING BACKGROUND HEARTS */
@@ -47,6 +56,9 @@ body {
   text-align: center;
   animation: pop 0.6s ease;
   z-index: 2;
+  max-height: 90vh;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .hidden { display: none; }
@@ -218,6 +230,48 @@ input {
   0%,100% { transform: translateY(0); }
   50% { transform: translateY(-16px); }
 }
+
+/* VALENTINE POPUP */
+#valentinePopup {
+  position: fixed;
+  inset: 0;
+  background: rgba(255,200,220,0.55);
+  backdrop-filter: blur(18px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+}
+
+.valentineCard {
+  background: white;
+  padding: 36px 28px;
+  border-radius: 34px;
+  max-width: 420px;
+  width: 90%;
+  text-align: center;
+  animation: applePop 0.7s cubic-bezier(.2,.8,.2,1);
+  box-shadow: 0 40px 80px rgba(0,0,0,0.2);
+}
+
+@keyframes applePop {
+  from { transform: scale(0.85); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+/* HEART STORM */
+@keyframes rise {
+  from { transform: translateY(0) scale(0.8); opacity: 0; }
+  to { transform: translateY(-130vh) scale(1.4); opacity: 1; }
+}
+
+/* MOBILE */
+@media (max-width: 420px) {
+  .card { padding: 28px 20px; }
+  h1 { font-size: 1.4rem; }
+  h2 { font-size: 1.2rem; }
+  button { font-size: 0.95rem; }
+}
 </style>
 </head>
 
@@ -263,6 +317,22 @@ input {
 <div class="card hidden" id="noPage">
   <p>Even if Salma said no… my heart still chose Salma 😌</p>
   <button class="yes" onclick="showYes()">Okay… tell me 💖</button>
+</div>
+
+<!-- VALENTINE POPUP -->
+<div id="valentinePopup" class="hidden">
+  <div class="valentineCard">
+    <h1>💘 Salma 💘</h1>
+    <p>
+      Will you be my Valentine…<br>
+      and my everything? 🤍<br><br>
+      — Yours always, <b>Alae</b>
+    </p>
+    <div class="buttons">
+      <button class="yes" onclick="acceptValentine()">Yes 💖</button>
+      <button class="no" id="runawayNo">No 🙃</button>
+    </div>
+  </div>
 </div>
 
 <script>
@@ -404,6 +474,46 @@ document.addEventListener("touchstart",e=>{
     setTimeout(()=>h.remove(),1300);
   }
 });
+
+/* VALENTINE */
+(function(){
+  const now=new Date();
+  const end=new Date(now.getFullYear(),1,15);
+  if(now<end){
+    document.getElementById("valentinePopup").classList.remove("hidden");
+  }
+})();
+
+/* RUNAWAY NO */
+const noBtn=document.getElementById("runawayNo");
+if(noBtn){
+  noBtn.addEventListener("mouseover",moveNo);
+  noBtn.addEventListener("touchstart",moveNo);
+}
+function moveNo(){
+  noBtn.style.position="fixed";
+  noBtn.style.left=Math.random()*(window.innerWidth-100)+"px";
+  noBtn.style.top=Math.random()*(window.innerHeight-100)+"px";
+}
+
+/* ACCEPT VALENTINE */
+function acceptValentine(){
+  document.getElementById("valentinePopup").remove();
+  for(let i=0;i<120;i++){
+    setTimeout(()=>{
+      const h=document.createElement("div");
+      h.innerText="❤️";
+      h.style.position="fixed";
+      h.style.left=Math.random()*100+"vw";
+      h.style.top="110vh";
+      h.style.fontSize=(20+Math.random()*30)+"px";
+      h.style.animation=`rise ${6+Math.random()*4}s linear`;
+      h.style.filter="drop-shadow(0 0 18px rgba(255,90,150,0.8))";
+      document.body.appendChild(h);
+      setTimeout(()=>h.remove(),10000);
+    },i*60);
+  }
+}
 </script>
 
 </body>
